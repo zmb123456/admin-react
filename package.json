@@ -10,6 +10,7 @@
     "qs": "^6.2.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-draft-wysiwyg": "^1.4.1",
     "site": "^2.21.0"
   },
   "devDependencies": {

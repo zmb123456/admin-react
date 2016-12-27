@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import styles from './MainLayout.less';
 import { Menu, Breadcrumb, Icon } from 'antd';
+import { Link } from 'react-router';
 const SubMenu = Menu.SubMenu;
 
 class MainLayout extends React.Component{
@@ -8,7 +9,7 @@ class MainLayout extends React.Component{
        super(props);
 
         this.state = {
-            collapse: props.collapse || true
+            collapse: props.collapse || false
         };
 
        // this.handleClick = this.handleClick.bind(this); //构造函数中绑定
@@ -32,8 +33,8 @@ class MainLayout extends React.Component{
               {!collapse && <span className={styles.nav_text}>导航一</span>}
             </Menu.Item>
             <SubMenu key="sub2" title={<span><Icon type="setting" />导航二</span>}>
-              <Menu.Item key="5">选项5</Menu.Item>
-              <Menu.Item key="6">选项6</Menu.Item>
+              <Menu.Item key="5"><Link to="/editor">editor</Link></Menu.Item>
+              <Menu.Item key="6"><Link to="/users">用户列表</Link></Menu.Item>
               <Menu.Item key="7">选项7</Menu.Item>
               <Menu.Item key="8">选项8</Menu.Item>
             </SubMenu>
