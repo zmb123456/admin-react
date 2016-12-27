@@ -18,6 +18,7 @@ function Editor1({location,history}){
  //  );
  // };
 
+
 	return (
 		<MainLayout location={location}>
 				<div className={styles.normal}>
