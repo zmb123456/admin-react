@@ -4,6 +4,7 @@ import HomePage from './routes/HomePage';
 import NotFound from './routes/NotFound';
 import Users from './routes/Users';
 import Editor from './routes/Editor';
+import Upload from './routes/Upload';
 
 /* eslint react/prop-types:0 */
 export default function ({ history }) {
@@ -12,6 +13,7 @@ export default function ({ history }) {
       <Route path="/" component={Editor} />
             {/* <Route path="/" component={HomePage} /> */}
       <Route path="/users" component={Users} />
+      <Route path="/upload" component={Upload} />
       <Route path="/editor" component={Editor} />
       <Route path="*" component={NotFound} />
     </Router>

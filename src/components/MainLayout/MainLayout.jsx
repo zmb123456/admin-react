@@ -35,8 +35,8 @@ class MainLayout extends React.Component {
             <SubMenu key="sub2" title={<span><Icon type="setting" />导航二</span>}>
               <Menu.Item key="5"><Link to="/editor">editor</Link></Menu.Item>
               <Menu.Item key="6"><Link to="/users">用户列表</Link></Menu.Item>
-              <Menu.Item key="7">选项7</Menu.Item>
-              <Menu.Item key="8">选项8</Menu.Item>
+              <Menu.Item key="7"><Link to="/upload">上传</Link></Menu.Item>
+                <Menu.Item key="8"><Link to="/users">产品列表</Link></Menu.Item>
             </SubMenu>
             <Menu.Item key="laptop">
               <Icon type="laptop" />

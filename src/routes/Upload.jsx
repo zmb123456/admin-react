@@ -2,16 +2,49 @@ import React, { PropTypes } from 'react';
 import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
 import MainLayout from '../components/MainLayout/MainLayout';
-import Editor from '../components/Editor';
+import Product from '../components/Product/Product';
 
-function Upload1({ loaction, history }) {
-	                    return (
+function Upload1({ loaction, dispatch ,products }) {
+
+
+	const { list } = products;
+
+	// const list=[{
+  //   key:'1',
+  //   name:'足球',
+  //   price:66,
+  //   state:1
+  // },{
+  //   key:'2',
+  //   name:'篮球',
+  //   price:77,
+  //   state:0
+  // },{
+  //   key:'3',
+  //   name:'乒乓球',
+  //   price:88,
+  //   state:1
+  // }];
+
+	const productProps = {
+		dataSource:list
+	}
+
+	return (
 	<MainLayout location={location}>
       <div>
-        <Editor />
+				<Product {...productProps} />
       </div>
     </MainLayout>
     );
-}
+};
 
-export default Upload1;
+
+Upload1.propTypes = {
+	products:PropTypes.object,
+	loaction:PropTypes.object,
+	dispatch:PropTypes.func
+};
+function mapStateToProps({products}){return {products}};
+
+export default connect(mapStateToProps)(Upload1);
