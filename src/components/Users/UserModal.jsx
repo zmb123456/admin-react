@@ -44,7 +44,7 @@ const UserModal = ({
   }
 
   const modalOpts = {
-    title: item.id?'修改用户':'添加用户',
+    title: item.id ? '修改用户' : '添加用户',
     visible,
     onOk: handleOk,
     onCancel,

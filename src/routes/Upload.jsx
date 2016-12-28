@@ -4,15 +4,14 @@ import { connect } from 'dva';
 import MainLayout from '../components/MainLayout/MainLayout';
 import Editor from '../components/Editor';
 
-function Upload1({loaction,history}){
-
-	return (
+function Upload1({ loaction, history }) {
+	                    return (
 	<MainLayout location={location}>
       <div>
-        <Editor/>
+        <Editor />
       </div>
     </MainLayout>
-    )
+    );
 }
 
 export default Upload1;

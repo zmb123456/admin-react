@@ -4,13 +4,13 @@ import { Menu, Breadcrumb, Icon } from 'antd';
 import { Link } from 'react-router';
 const SubMenu = Menu.SubMenu;
 
-class MainLayout extends React.Component{
-      constructor(props) {
-       super(props);
+class MainLayout extends React.Component {
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            collapse: props.collapse || false
-        };
+    this.state = {
+      collapse: props.collapse || false,
+    };
 
        // this.handleClick = this.handleClick.bind(this); //构造函数中绑定
   }
@@ -18,13 +18,13 @@ class MainLayout extends React.Component{
   onCollapseChange() {
     this.setState({
       collapse: !this.state.collapse,
-    })
+    });
   }
 
-  render(){
+  render() {
     const collapse = this.state.collapse;
     return (
-      <div className={collapse ? styles.ant_layout_aside +' '+ styles.ant_layout_aside_collapse: styles.ant_layout_aside}>
+      <div className={collapse ? styles.ant_layout_aside + ' ' + styles.ant_layout_aside_collapse : styles.ant_layout_aside}>
         <aside className={styles.ant_layout_sider}>
           <div className={styles.ant_layout_logo}></div>
           <Menu mode="inline" theme="dark" defaultSelectedKeys={['user']}>
@@ -74,7 +74,7 @@ class MainLayout extends React.Component{
         </div>
       </div>
   );
-}
+  }
 }
 
 MainLayout.propTypes = {
