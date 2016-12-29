@@ -16,13 +16,15 @@ function Editor1({ location, history }) {
  //  );
  // };
 
+
+
   return (
 		<MainLayout location={location}>
 				<div className={styles.normal}>
           <Editor
-            toolbarClassName="home-toolbar"
-            wrapperClassName="home-wrapper"
-            editorClassName="home-editor"
+            wrapperClassName="wrapper-class"
+            editorClassName="editor-class"
+            toolbarClassName="toolbar-class"
           />
 				</div>
 		</MainLayout>
