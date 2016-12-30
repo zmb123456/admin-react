@@ -15,7 +15,7 @@ function Product({dataSource}){
     title:'状态',
     dataIndex:'state',
     key:'state',
-    render:(text,record,index)=>record==1?'已售':'未售'
+    render:(text,record,index)=>record.state==1?'已售':'未售'
   },{
     title:'操作',
     dataIndex:'',

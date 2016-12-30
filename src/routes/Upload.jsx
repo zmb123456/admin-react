@@ -4,7 +4,7 @@ import { connect } from 'dva';
 import MainLayout from '../components/MainLayout/MainLayout';
 import Product from '../components/Product/Product';
 
-function Upload1({ loaction, dispatch ,products }) {
+const Upload1=({ loaction, dispatch ,products })=> {
 
 
 	const { list } = products;
