@@ -2,49 +2,52 @@ import React, { PropTypes } from 'react';
 import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
 import MainLayout from '../components/MainLayout/MainLayout';
-import Product from '../components/Product/Product';
+import {Upload,Icon,Modal} from 'antd';
 
-const Upload1=({ loaction, dispatch ,products })=> {
+const Upload1=({ loaction, dispatch,state })=> {
+	 state = {
+    previewVisible: false,
+    previewImage: ''
+  };
+	const fileList=[{
+		uid: -1,
+		name: 'xxx.png',
+		status: 'done',
+		url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+	}];
 
+const handlePreview=  (file) => {
+	this.setState({
+		previewImage: file.url || file.thumbUrl,
+		previewVisible: true,
+	});
+};
 
-	const { list } = products;
-
-	// const list=[{
-  //   key:'1',
-  //   name:'足球',
-  //   price:66,
-  //   state:1
-  // },{
-  //   key:'2',
-  //   name:'篮球',
-  //   price:77,
-  //   state:0
-  // },{
-  //   key:'3',
-  //   name:'乒乓球',
-  //   price:88,
-  //   state:1
-  // }];
-
-	const productProps = {
-		dataSource:list
-	}
+const handleCancel=() => {this.setState({ previewVisible: false });alert('点击了取消')};
+const uploadButton = (
+	<div>
+		<Icon type="plus" />
+		<div className="ant-upload-text">Upload</div>
+	</div>
+);
 
 	return (
 	<MainLayout location={location}>
       <div>
-				<Product {...productProps} />
+				<Upload
+          action="/upload.do"
+          listType="picture-card"
+          fileList={fileList}
+          onPreview={handlePreview}
+        >
+          {fileList.length >= 3 ? null : uploadButton}
+        </Upload>
+        <Modal visible={state.previewVisible} footer={null} onCancel={handleCancel}>
+          <img alt="example" style={{ width: '100%' }} src={state.previewImage} />
+        </Modal>
       </div>
     </MainLayout>
     );
 };
 
-
-Upload1.propTypes = {
-	products:PropTypes.object,
-	loaction:PropTypes.object,
-	dispatch:PropTypes.func
-};
-function mapStateToProps({products}){return {products}};
-
-export default connect(mapStateToProps)(Upload1);
+export default Upload1;

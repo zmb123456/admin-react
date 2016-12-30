@@ -10,7 +10,7 @@ const app = dva({
 
 // 2. Model
 app.model(require('./models/users'));
-app.model(require('./models/products'));
+app.model(require('./models/product'));
 
 // 3. Router
 app.router(require('./router'));

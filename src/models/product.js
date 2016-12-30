@@ -20,7 +20,7 @@
 
 export default {
   // 1.model领域名称
-  namespace: 'products',
+  namespace: 'product',
   // 2.state map
   state: {
     list:[]
@@ -29,7 +29,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(loaction=>{
-          if(loaction.pathname==='/upload'){
+          if(loaction.pathname==='/product'){
             dispatch({
               type:'query',
               payload:location.query
