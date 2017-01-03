@@ -1,29 +1,20 @@
-// export default {
-//   namespace:'products',
-//   listData:[{
-//         key:'1',
-//         name:'足球',
-//         price:66,
-//         state:1
-//       },{
-//         key:'2',
-//         name:'篮球',
-//         price:77,
-//         state:0
-//       },{
-//         key:'3',
-//         name:'乒乓球',
-//         price:88,
-//         state:1
-//       }]
-// }
+import { create, remove, update, query } from '../services/product';
+import { parse } from 'qs';
 
 export default {
   // 1.model领域名称
   namespace: 'product',
   // 2.state map
   state: {
-    list:[]
+    list: [],
+    field: '',
+    keyword: '',
+    loading: false,
+    total: null,
+    current: 1,
+    currentItem: {},
+    modalVisible: false,
+    modalType: 'create',
   },
   // 3.订阅数据源（一般订阅默认加载的数据，例如初始数据）
   subscriptions: {
@@ -46,26 +37,25 @@ export default {
       yield put({
         type: 'querySuccess',
         payload: {
-          list: [{
-                  key:'1',
-                  name:'足球',
-                  price:66,
-                  state:1
-                },{
-                  key:'2',
-                  name:'篮球',
-                  price:77,
-                  state:0
-                },{
-                  key:'3',
-                  name:'乒乓球',
-                  price:88,
-                  state:1
-                }]
+          ...payload
         },
       });
+      const {data} = yield call(query,parse(payload));
+      if({data}){
+        yield put({
+          type:'querySuccess',
+          payload:{
+            list: data.data,
+            total: data.page.total,
+            current: data.page.current,
+            // list:data.data,
+            // total:data.count
+          }
+        })
+      }
     },
   },
+
   // 处理页面数据逻辑（通过更新state来驱动页面改变）
   reducers: {
     querySuccess(state, action) {

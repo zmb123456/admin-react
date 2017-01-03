@@ -1,9 +1,15 @@
 import React,{PropTypes} from 'React';
 import {Table,Pagination} from 'antd';
 
-function Product({dataSource}){
+function Product({
+  total, current, loading, dataSource,onPageChange
+}){
 
   const columns=[{
+    title:'ID',
+    dataIndex:'id',
+    key:'id'
+  },{
     title:'名称',
     dataIndex:'name',
     key:'name'
@@ -23,10 +29,22 @@ function Product({dataSource}){
     render:()=><a href='#'>删除</a>
   }];
   return(
+      <div>
     <Table
-      dataSource={dataSource}
       columns={columns}
+      dataSource={dataSource}
+      loading={loading}
+      rowKey={record => record.id}
+      pagination={false}
     />
+    <Pagination
+      className="ant-table-pagination"
+      total={total}
+      current={current}
+      pageSize={10}
+      onChange={onPageChange}
+    />
+  </div>
   )
 };
 

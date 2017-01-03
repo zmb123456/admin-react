@@ -8,10 +8,20 @@ import MainLayout from '../components/MainLayout/MainLayout';
 
 const Product1 = ({loaction,dispatch,product})=>{
 
-      const {list}=product;
+      const {    loading, list, total, current, field, keyword,
+          currentItem, modalVisible, modalType,}=product;
 
       const productProps={
-        dataSource:list
+        dataSource: list,
+        loading,
+        total,
+        current,
+        onPageChange(page) {
+          dispatch(routerRedux.push({
+            pathname: '/product',
+            query: { field, keyword, page },
+          }));
+        },
       };
 
       return (
