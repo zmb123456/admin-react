@@ -103,25 +103,25 @@ $ npm start                 启动本地端口并打开 demo (默认chrome浏览
 
 5. 为了有更好的state管理，就需要一个库来作为更专业的顶层state分发给所有React应用，这就是Redux。让我们回来看看重现上面结构的需求：
 
-  *a. 需要回调通知state (等同于回调参数) -> action
+  * a. 需要回调通知state (等同于回调参数) -> action
 
-  *b. 需要根据回调处理 (等同于父级方法) -> reducer
+  * b. 需要根据回调处理 (等同于父级方法) -> reducer
 
-  *c. 需要state (等同于总状态) -> store
+  * c. 需要state (等同于总状态) -> store
 
 对Redux来说只有这三个要素：
 
-  *a. action是纯声明式的数据结构，只提供事件的所有要素，不提供逻辑。
+  * a. action是纯声明式的数据结构，只提供事件的所有要素，不提供逻辑。
 
-  *b. reducer是一个匹配函数，action的发送是全局的：所有的reducer都可以捕捉到并匹配与自己相关与否，相关就拿走action中的要素进行逻辑处理，修改store中的状态，不相关就不对state做处理原样返回。
+  * b. reducer是一个匹配函数，action的发送是全局的：所有的reducer都可以捕捉到并匹配与自己相关与否，相关就拿走action中的要素进行逻辑处理，修改store中的状态，不相关就不对state做处理原样返回。
 
-  *c. store负责存储状态并可以被react api回调，发布action.
+  * c. store负责存储状态并可以被react api回调，发布action.
 
 当然一般不会直接把两个库拿来用，还有一个binding叫react-redux, 提供一个Provider和connect。很多人其实看懂了redux卡在这里。
 
-  *a. Provider是一个普通组件，可以作为顶层app的分发点，它只需要store属性就可以了。它会将state分发给所有被connect的组件，不管它在哪里，被嵌套多少层。
+  * a. Provider是一个普通组件，可以作为顶层app的分发点，它只需要store属性就可以了。它会将state分发给所有被connect的组件，不管它在哪里，被嵌套多少层。
 
-  *b. connect是真正的重点，它是一个科里化函数，意思是先接受两个参数（数据绑定mapStateToProps和事件绑定mapDispatchToProps），再接受一个参数（将要绑定的组件本身）：
+  * b. connect是真正的重点，它是一个科里化函数，意思是先接受两个参数（数据绑定mapStateToProps和事件绑定mapDispatchToProps），再接受一个参数（将要绑定的组件本身）：
 
 mapStateToProps：构建好Redux系统的时候，它会被自动初始化，但是你的React组件并不知道它的存在，因此你需要分拣出你需要的Redux状态，所以你需要绑定一个函数，它的参数是state，简单返回你关心的几个值。
 
