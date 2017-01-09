@@ -11,7 +11,7 @@ import Product from './routes/Product';
 export default function ({ history }) {
   return (
     <Router history={history}>
-      <Route path="/" component={Editor} />
+      <Route path="/" component={Product} />
       <Route path="/editor" component={Editor} />
             {/* <Route path="/" component={HomePage} /> */}
       <Route path="/users" component={Users} />

@@ -42,12 +42,13 @@ export default {
       });
       const {data} = yield call(query,parse(payload));
       if({data}){
+        console.log(data)
         yield put({
           type:'querySuccess',
           payload:{
             list: data.data,
-            total: data.page.total,
-            current: data.page.current,
+            total: data.count,
+            // current: data.page.current,
             // list:data.data,
             // total:data.count
           }
