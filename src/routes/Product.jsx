@@ -6,9 +6,9 @@ import styles from './users.less';
 import MainLayout from '../components/MainLayout/MainLayout';
 
 
-const Product1 = ({loaction,dispatch,product})=>{
+function Product1({location,dispatch,product}){
 
-      const {    loading, list, total, current, field, keyword,
+      const { loading, list, total, current,
           currentItem, modalVisible, modalType,}=product;
 
       const productProps={
@@ -19,13 +19,13 @@ const Product1 = ({loaction,dispatch,product})=>{
         onPageChange(page) {
           dispatch(routerRedux.push({
             pathname: '/product',
-            query: { field, keyword, page },
+            query: { page },
           }));
         },
       };
 
       return (
-        <MainLayout loaction={loaction}>
+        <MainLayout location={location}>
           <div className={styles.nomal}>
               <Product {...productProps} />
           </div>
@@ -33,12 +33,14 @@ const Product1 = ({loaction,dispatch,product})=>{
       )
 };
 
-const productProps={
+Product1.propTypes={
   location:PropTypes.object,
-  dispatch:PropTypes.fun,
-  product:PropTypes.object
-}
+  dispatch:PropTypes.func,
+  product:PropTypes.object,
+};
 
-function mapStateToProps({product}){return {product}};
+function mapStateToProps({product}){
+  return {product};
+};
 
-export default connect(mapStateToProps)(Product1)
+export default connect(mapStateToProps)(Product1);

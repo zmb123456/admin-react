@@ -76,6 +76,9 @@ export default {
         });
       }
     },
+    *login({payload},{call,put}){
+        window.location.href = "./product";
+    },
     *update({ payload }, { select, call, put }) {
       yield put({ type: 'hideModal' });
       yield put({ type: 'showLoading' });

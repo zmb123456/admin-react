@@ -1,51 +1,36 @@
 import React,{PropTypes} from 'react';
-import { Link } from 'dva/router';
-import styles from './HomePage.less';
-import { Form,Icon,Input,Button} from 'antd';
-const FormItem = Form.Item;
+import { routerRedux } from 'dva/router';
+import { connect } from 'dva';
+import Login from '../components/Users/Login';
 
-function HomePage({form: {
-    getFieldDecorator,
-    validateFields,
-    getFieldsValue,
-    }}) {
-  function handleSubmit(e){
-    e.preventDefault();
-    validateFields((errors) => {
-      if (!!errors) {
-        return;
-      }
-      alert(JSON.stringify(getFieldsValue()));
-    });
+
+function HomePage({loaction,dispatch,users}) {
+
+  const {userName,password} = users;
+
+  const userLoginProps = {
+    onLogin(loginData){
+      dispatch({
+        type:'users/login',
+        payload:loginData,
+      })
+    }
   };
+
+
   return (
-    <div className={styles.box}>
-      <Form inline onSubmit={handleSubmit} className={styles.normal}>
-        <FormItem>
-          {getFieldDecorator('userName', {
-            rules: [{ required: true, message: '登录名不能为空！' }],
-          })(
-            <Input addonBefore={<Icon type="user" />} placeholder="请输入登录名" />
-          )}
-        </FormItem>
-        <FormItem>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: '密码不能为空！' }],
-          })(
-            <Input addonBefore={<Icon type="lock" />} type="password" placeholder="请输入密码" />
-          )}
-        </FormItem>
-        <FormItem>
-          <Button type="primary" htmlType="submit">登录</Button>
-        </FormItem>
-      </Form>`
-    </div>
+    <Login {...userLoginProps} />
   );
+};
+
+function mapStateToProps({ users }) {
+  return { users };
 }
 
 HomePage.propTypes = {
-    form: PropTypes.object.isRequired,
+    location: PropTypes.object,
+    dispatch: PropTypes.func,
 };
 
 // export default HomePage;
-export default Form.create()(HomePage);
+export default connect(mapStateToProps)(HomePage);

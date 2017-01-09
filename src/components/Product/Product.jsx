@@ -49,6 +49,10 @@ function Product({
 };
 
 Product.propTypes={
-    dataSource:PropTypes.array
+  onPageChange: PropTypes.func,
+  dataSource: PropTypes.array,
+  loading: PropTypes.any,
+  total: PropTypes.any,
+  current: PropTypes.any,
 };
 export default Product;

@@ -7,8 +7,6 @@ export default {
   // 2.state map
   state: {
     list: [],
-    field: '',
-    keyword: '',
     loading: false,
     total: null,
     current: 1,
@@ -19,30 +17,27 @@ export default {
   // 3.订阅数据源（一般订阅默认加载的数据，例如初始数据）
   subscriptions: {
     setup({ dispatch, history }) {
-      history.listen(loaction=>{
-          if(loaction.pathname==='/product'){
+      history.listen(location=>{
+          if(location.pathname === '/product'){
             dispatch({
               type:'query',
-              payload:location.query
+              payload: location.query,
             });
           }
-      })
-    }
+      });
+    },
   },
 
 
   // 4.异步数据逻辑（通过接口更新数据源）
   effects: {
-    * query({ payload }, { call, put }) {
+    *query({ payload }, { call, put }) {
       yield put({
         type: 'querySuccess',
-        payload: {
-          ...payload
-        },
+        payload: { page: 1,  ...payload },
       });
       const {data} = yield call(query,parse(payload));
-      if({data}){
-        console.log(data)
+      if(data){
         yield put({
           type:'querySuccess',
           payload:{
